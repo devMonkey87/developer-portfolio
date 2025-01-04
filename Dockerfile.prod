@@ -1,10 +1,12 @@
 FROM node:20 AS base
 WORKDIR /app
+RUN echo "Iniciando el proceso de construcción"
+
 RUN npm i -g pnpm
 RUN npm i -g next
 
 COPY package*.json ./
-RUN pnpm install
+RUN pnpm install --legacy-peer-deps
 
 COPY . .
 RUN pnpm build
